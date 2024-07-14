@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
 using System;
 using System.Text;
 
@@ -15,6 +16,10 @@ var configuration = builder.Configuration;
 var jwtSettings = new JwtSettings();
 configuration.Bind(nameof(JwtSettings), jwtSettings);
 builder.Services.AddSingleton(jwtSettings);
+
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(configuration.GetSection("Redis")["ConnectionString"]));
+builder.Services.AddSingleton<RedisCacheService>();
 builder.Services.AddScoped<AccountService.Services.AccountService>();
 builder.Services.AddScoped<RabbitMQPublisher>();
 builder.Services.AddTransient<TokenService>();
