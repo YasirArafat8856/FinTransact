@@ -21,12 +21,14 @@ The FinTransact API .NET 8 supported microservices-based system.
 - RabbitMQ for message queues
 - SignalR for real-time communication
 - JWT for authentication
+- Redis for caching
 - Swagger for API documentation
 
 ## Prerequisites
 - .NET Core SDK
 - Visual Studio 2022
 - RabbitMQ
+- Redis
 
 ### Clone the Repository
 git clone https://github.com/YasirArafat8856/FinTransact
